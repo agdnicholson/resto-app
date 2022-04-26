@@ -25,7 +25,8 @@
     </div>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <div class="block p-6 rounded-lg shadow-lg bg-white">
-            <form method="post" action="">
+            <form method="post" action="{{ route('admin.categories.store') }}" enctype="multipart/form-data">
+                @csrf
                 <div class="form-group">
                     <label for="name" class="form-label inline-block mb-2 text-gray-700">Name</label>
                     <input type="text" class="form-control
@@ -47,7 +48,7 @@
                 </div>
                 <div class="form-group mb-6">
                     <label for="image" class="form-label inline-block mb-2 text-gray-700">Image</label>
-                    <input type="text" class="form-control
+                    <input type="file" class="form-control
         block
         w-full
         px-3
