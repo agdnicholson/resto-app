@@ -25,10 +25,11 @@
     </div>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <div class="block p-6 rounded-lg shadow-lg bg-white">
-            <form method="post" action="{{ route('admin.categories.store') }}" enctype="multipart/form-data">
+            <form method="post" action="{{ route('admin.categories.update', $category->id) }}" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="form-group">
-                    <label for="name" class="form-label inline-block mb-2 text-gray-700">Name</label>
+                    <label for="name" class="form-label inline-block mb-2 text-gray-700" >Name</label>
                     <input type="text" class="form-control
         block
         w-full
@@ -43,11 +44,14 @@
         transition
         ease-in-out
         m-0
-        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" name="name" id="name" placeholder="Enter Category Name">
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" name="name" id="name" value="{{ $category->name }}" placeholder="Enter Category Name">
 
                 </div>
                 <div class="form-group mb-6">
                     <label for="image" class="form-label inline-block mb-2 text-gray-700">Image</label>
+                    <div class="py-5">
+                        <img class="w-64" src="{{ Storage::url($category->image) }}" />
+                    </div>
                     <input type="file" class="form-control
         block
         w-full
@@ -62,7 +66,7 @@
         transition
         ease-in-out
         m-0
-        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="image" name="image" placeholder="Select Image">
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="image" name="image" placeholder="Select New Image">
 
                 </div>
                 
@@ -90,7 +94,7 @@
       name="description"
       rows="3"
       placeholder="Description"
-    ></textarea>
+    >{{ $category->description }}</textarea>
                 </div>
 
                 <button type="submit" class="
@@ -109,7 +113,7 @@
       active:bg-blue-800 active:shadow-lg
       transition
       duration-150
-      ease-in-out">Create</button>
+      ease-in-out">Update</button>
             </form>
         </div>
     </div>
